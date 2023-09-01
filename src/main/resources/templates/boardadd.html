@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/board}" th:method="post">
+    <input type="text" name="board_name">
+    <input type="text" name="board_content">
+    <input type="submit" value="제출">
+</form>
+</body>
+</html>
