@@ -1,13 +1,17 @@
 package com.example.boooard.controller;
 
 import com.example.boooard.dto.request.ReqInsertDTO;
+import com.example.boooard.dto.response.PostResponse;
 import com.example.boooard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +36,11 @@ public class BoardController {
         boardService.boardInsert(req);
         return "redirect:/board/index";
     }
+    @GetMapping("/list")
+    public String boardList(Model model) {
+        List<PostResponse> posts = BoardService.findAllpost();
+        model.addAttribute("posts", posts);
+        return "boardlist";
+    }
+    }
 
-}
