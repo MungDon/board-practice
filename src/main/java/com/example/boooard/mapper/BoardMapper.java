@@ -8,6 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    public void insert(ReqInsertDTO req);
-    static List<PostResponse> findAll();
+    void insert(ReqInsertDTO req);
+    List<PostResponse> findAll();
 }

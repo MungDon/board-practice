@@ -38,7 +38,7 @@ public class BoardController {
     }
     @GetMapping("/list")
     public String boardList(Model model) {
-        List<PostResponse> posts = BoardService.findAllpost();
+        List<PostResponse> posts = boardService.findAllpost();
         model.addAttribute("posts", posts);
         return "boardlist";
     }
