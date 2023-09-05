@@ -5,7 +5,7 @@ import com.example.boooard.dto.response.PostResponse;
 import com.example.boooard.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class BoardService {
         boardMapper.insert(req);
     }
 
-    public List<PostResponse> findAllpost() {
+    public List<PostResponse> findAllPost() {
         return boardMapper.findAll();
 
         

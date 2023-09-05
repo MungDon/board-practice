@@ -5,7 +5,7 @@ import com.example.boooard.dto.response.PostResponse;
 import com.example.boooard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +38,7 @@ public class BoardController {
     }
     @GetMapping("/list")
     public String boardList(Model model) {
-        List<PostResponse> posts = boardService.findAllpost();
+        List<PostResponse> posts = boardService.findAllPost();
         model.addAttribute("posts", posts);
         return "boardlist";
     }
