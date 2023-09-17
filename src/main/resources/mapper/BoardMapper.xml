@@ -15,9 +15,9 @@
     </sql>
 
     <!-- 게시글 저장 -->
-    <insert id="insert" parameterType="com.example.boooard.dto.request.ReqInsertDTO">
-            INSERT into board (<include refid="postColumns" />)
-            VALUES (0, #{board_name},#{board_content})
+    <insert id="insert" parameterType="com.example.boooard.dto.request.ReqInsertDTO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+            INSERT into tb_post (<include refid="postColumns" />)
+            VALUES (0, #{title},#{content},#{writer},0,0,0,now(),now())
     </insert>
     <!-- 게시글 조회 -->
     <select id="findAll" resultType="com.example.boooard.dto.response.PostResponse">
@@ -29,5 +29,14 @@
         delete_yn = 0
         ORDER BY
         id DESC
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="com.example.boooard.dto.response.PostResponse">
+        SELECT
+        <include refid="postColumns" />
+        FROM
+        tb_post
+        WHERE
+        id=#{id}
     </select>
 </mapper>

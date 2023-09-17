@@ -18,6 +18,10 @@ public class BoardService {
         boardMapper.insert(req);
     }
 
+    public PostResponse findById(final Long id){
+      return boardMapper.findById(id);
+    }
+
     public List<PostResponse> findAllPost() {
         return boardMapper.findAll();
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <form th:action="@{/board}" th:method="post">
-    <input type="text" name="board_name">
-    <input type="text" name="board_content">
+    <input type="text" name="title">
+    <input type="text" name="content">
+    <input type="text" name="writer">
     <input type="submit" value="제출">
 </form>
 </body>

@@ -1,10 +1,11 @@
 package com.example.boooard.dto.response;
 
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 public class PostResponse {
 
     private Long id;                       // PK

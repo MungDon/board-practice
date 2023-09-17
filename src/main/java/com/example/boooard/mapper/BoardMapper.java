@@ -9,5 +9,7 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     void insert(ReqInsertDTO req);
+
+    PostResponse findById(Long id);
     List<PostResponse> findAll();
 }
