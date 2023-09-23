@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/boarddetail.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/reset2.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+
+</head>
+<body>
+<div class="container">
+    <header th:replace="header :: header"></header>
+
+    <main class="board_detail_main_con">
+        <div class="board_detail_main_box">
+            <div class="detail_tag1">
+                <span class="tag1_name" th:text="|제목 : ${post.title}|"></span>
+                <span class="tag1_time"
+                      th:text="|생성 일시: ${#temporals.format( post.createdDate, 'yyyy-MM-dd HH:mm' )}|"></span>
+            </div>
+            <div class="detail_tag2">
+                <span class="tag2_writer" th:text="|작성자 : ${post.writer}|"></span>
+                <span class="tag2_viewCnt" th:text="|조회 수 : ${post.viewCnt}|"></span>
+            </div>
+
+            <div class="detail_tag2">
+                <span class="groupTag tag2_noticeYn" th:text="|공지글 여부 : ${post.noticeYn}|"></span>
+                <span class="groupTag tag2_deleteYn" th:text="|삭제 여부 : ${post.deleteYn} |"></span>
+            </div>
+            <div class="detail_tag3">
+                <span class="tag3_modifiedDate"
+                      th:text="|최종 수정 일시 : ${#temporals.format( post.modifiedDate, 'yyyy-MM-dd HH:mm' )}|"></span>
+            </div>
+            <div class="detail_tag4">
+                <span class="tag4_content" th:text="|${post.content}|"></span>
+            </div>
+        </div>
+        <p class="btn_set">
+            <button type="button" onclick="deletePost();" class="btns btn_bdr1 btn_mid">삭제</button>
+        </p>
+
+
+
+        <!--    <div class="review_box">-->
+        <!--    <form action="/boards/review" class="reviewForm">-->
+        <!--      <textarea name="reviewContent"></textarea>-->
+        <!--      <button type="button" class="review_add_btn">댓글 등록</button>-->
+        <!--    </form>-->
+
+        <!--    <div class="reviewListBox">-->
+
+        <!--    </div>-->
+        <!--  </div>-->
+    </main>
+
+    <footer th:replace="footer :: footer"></footer>
+
+
+</div>
+</body>
+</html>

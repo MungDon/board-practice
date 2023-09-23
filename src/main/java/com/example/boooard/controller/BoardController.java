@@ -39,11 +39,17 @@ public class BoardController {
         return "list";
     }
 
-    @GetMapping("/view")
-    public String openBoardView(@RequestParam final Long id, Model model) {
+    @GetMapping("/view/{id}")
+    public String openBoardView(@PathVariable final Long id, Model model) {
         PostResponse post = boardService.findById(id);
         model.addAttribute("post", post);
-            return "/list";
+        return "/view";
     }
+    @PostMapping("/delete")
+    public String deletePost(@RequestParam final Long id){
+        boardService.deletePost(id);
+        return "redirect:/board/list";
+
     }
+}
 
