@@ -57,7 +57,7 @@
 
         document.getElementById('saveBtn').disabled = true;
         form.noticeYn.value = form.isNotice.checked;
-        form.action = [[ ${post == null}]] ? '/post/save.do' : '/post/update.do';
+        form.action = [[ ${post == null}]] ? '/board' : '/update';
         form.submit();
     }
 </script>
