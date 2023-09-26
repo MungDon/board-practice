@@ -14,5 +14,7 @@ public interface BoardMapper {
 
     List<PostResponse> findAll();
 
+    void update(ReqInsertDTO params);
+
     void deleteById(Long id);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.List;
 
 @Controller
@@ -19,9 +20,14 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("")
-    public String boardAddForm() {
+    public String boardAddForm(@RequestParam(value = "id", required = false) final Long id, Model model) {
+        if (id != null) {
+            PostResponse post = boardService.findById(id);
+            model.addAttribute("post", post);
+        }
         return "boardadd";
     }
+
     @GetMapping("/index")
     public String board() {
         return "index";
@@ -32,6 +38,7 @@ public class BoardController {
         boardService.boardInsert(req);
         return "redirect:/board/list";
     }
+
     @GetMapping("/list")
     public String boardList(Model model) {
         List<PostResponse> posts = boardService.findAllPost();
@@ -45,8 +52,16 @@ public class BoardController {
         model.addAttribute("post", post);
         return "/view";
     }
+
+
+    @PostMapping("/update")
+    public String updatePost(final ReqInsertDTO params) {
+        boardService.updatePost(params);
+        return "redirect:/board/list";
+    }
+
     @PostMapping("/delete")
-    public String deletePost(@RequestParam final Long id){
+    public String deletePost(@RequestParam final Long id) {
         boardService.deletePost(id);
         return "redirect:/board/list";
 

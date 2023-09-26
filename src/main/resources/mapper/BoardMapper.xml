@@ -15,14 +15,15 @@
     </sql>
 
     <!-- 게시글 저장 -->
-    <insert id="insert" parameterType="com.example.boooard.dto.request.ReqInsertDTO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-            INSERT into tb_post (<include refid="postColumns" />)
-            VALUES (0, #{title},#{content},#{writer},0,0,0,now(),now())
+    <insert id="insert" parameterType="com.example.boooard.dto.request.ReqInsertDTO" useGeneratedKeys="true"
+            keyColumn="id" keyProperty="id">
+        INSERT into tb_post (<include refid="postColumns"/>)
+        VALUES (0, #{title},#{content},#{writer},0,0,0,now(),now())
     </insert>
     <!-- 게시글 조회 -->
     <select id="findAll" resultType="com.example.boooard.dto.response.PostResponse">
         SELECT
-        <include refid="postColumns" />
+        <include refid="postColumns"/>
         FROM
         tb_post
         WHERE
@@ -33,7 +34,7 @@
 
     <select id="findById" parameterType="Long" resultType="com.example.boooard.dto.response.PostResponse">
         SELECT
-        <include refid="postColumns" />
+        <include refid="postColumns"/>
         FROM
         tb_post
         WHERE
@@ -42,9 +43,19 @@
 
     <delete id="deleteById" parameterType="long">
         UPDATE tb_post
+        SET delete_yn = 1
+        WHERE id = #{id}
+    </delete>
+    <!-- 게시글 수정 -->
+    <update id="update" parameterType="com.example.boooard.dto.request.ReqInsertDTO">
+        UPDATE tb_post
         SET
-            delete_yn = 1
+            modified_date = NOW()
+          , title = #{title}
+          , content = #{content}
+          , writer = #{writer}
+          , notice_yn = #{noticeYn}
         WHERE
             id = #{id}
-    </delete>
+    </update>
 </mapper>

@@ -5,6 +5,7 @@ import com.example.boooard.dto.response.PostResponse;
 import com.example.boooard.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -28,5 +29,10 @@ public class BoardService {
     public Long deletePost(final Long id) {
         boardMapper.deleteById(id);
         return id;
+    }
+    @Transactional
+    public Long updatePost(final ReqInsertDTO params) {
+        boardMapper.update(params);
+        return params.getId();
     }
 }
