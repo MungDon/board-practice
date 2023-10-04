@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardMapper {
     void save(ReqInsertDTO params);
 
-    void insert(ReqInsertDTO req);
+
 
     PostResponse findById(Long id);
 
