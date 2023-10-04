@@ -15,21 +15,26 @@ import java.util.List;
 public class BoardService {
     private final BoardMapper boardMapper;
 
-    public void boardInsert(ReqInsertDTO req) {
-        boardMapper.insert(req);
+    @Transactional
+    public Long savePost(final ReqInsertDTO params) {
+        boardMapper.save(params);
+        return params.getId();
+
     }
 
-    public PostResponse findById(final Long id) {
+    public PostResponse findPostById(final Long id) {
         return boardMapper.findById(id);
     }
 
     public List<PostResponse> findAllPost() {
         return boardMapper.findAll();
     }
+
     public Long deletePost(final Long id) {
         boardMapper.deleteById(id);
         return id;
     }
+
     @Transactional
     public Long updatePost(final ReqInsertDTO params) {
         boardMapper.update(params);

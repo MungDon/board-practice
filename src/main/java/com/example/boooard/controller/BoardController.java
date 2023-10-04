@@ -20,22 +20,23 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("")
-    public String boardAddForm(@RequestParam(value = "id", required = false) final Long id, Model model) {
+    public String openPostWrite(@RequestParam(value = "id", required = false) final Long id, Model model) {
         if (id != null) {
-            PostResponse post = boardService.findById(id);
+            PostResponse post = boardService.findPostById(id);
             model.addAttribute("post", post);
         }
         return "boardadd";
     }
+
 
     @GetMapping("/index")
     public String board() {
         return "index";
     }
 
-    @PostMapping("")
-    public String boardInsert(ReqInsertDTO req) {
-        boardService.boardInsert(req);
+    @PostMapping("/save")
+    public String savePost(final ReqInsertDTO params) {
+        boardService.savePost(params);
         return "redirect:/board/list";
     }
 
@@ -48,7 +49,7 @@ public class BoardController {
 
     @GetMapping("/view/{id}")
     public String openBoardView(@PathVariable final Long id, Model model) {
-        PostResponse post = boardService.findById(id);
+        PostResponse post = boardService.findPostById(id);
         model.addAttribute("post", post);
         return "/view";
     }

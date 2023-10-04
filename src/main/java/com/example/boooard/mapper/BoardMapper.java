@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    void save(ReqInsertDTO params);
+
     void insert(ReqInsertDTO req);
 
     PostResponse findById(Long id);

@@ -15,10 +15,20 @@
     </sql>
 
     <!-- 게시글 저장 -->
-    <insert id="insert" parameterType="com.example.boooard.dto.request.ReqInsertDTO" useGeneratedKeys="true"
-            keyColumn="id" keyProperty="id">
-        INSERT into tb_post (<include refid="postColumns"/>)
-        VALUES (0, #{title},#{content},#{writer},0,0,0,now(),now())
+    <insert id="save" parameterType="com.example.boooard.dto.request.ReqInsertDTO">
+        INSERT INTO tb_post (
+        <include refid="postColumns" />
+        ) VALUES (
+        #{id}
+        , #{title}
+        , #{content}
+        , #{writer}
+        , 0
+        , #{noticeYn}
+        , 0
+        , NOW()
+        , NULL
+        )
     </insert>
     <!-- 게시글 조회 -->
     <select id="findAll" resultType="com.example.boooard.dto.response.PostResponse">
